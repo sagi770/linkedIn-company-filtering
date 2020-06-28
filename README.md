@@ -10,6 +10,7 @@ instead of checking your email with the company name to make sure if you already
 so whenever you decide to filter a company with this extension you have the option.
 
 Features:
+* this filter support both view - cube and preview
 * choose what action to do (hide or mark) by default is doing nothing.
 * export list as JSON
 * upload list from JSON
@@ -17,7 +18,7 @@ Features:
 
 there is something that I didn't implement yet:
 * append add button on preview mode
-* rerender filter on scroll / ajax
+* re-render filter on scroll / ajax
 
 
 so feel free to make a pull request ;-)
