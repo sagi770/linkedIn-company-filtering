@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Linkedin Filter Companies</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <script src="popup.js" charset="utf-8"></script>
+
+    <div class="container">
+      <h2>
+        Linkedin Filter Companies
+      </h2>
+      <div>
+        <div class="margin-top-5">What Action to do?</div>
+        <input type="radio" id="nothing" name="whatAction" value="nothing" />
+        <label for="nothing">Nothing</label>
+
+        <input type="radio" id="hide" name="whatAction" value="hide" />
+        <label for="hide">Hide</label>
+
+        <input type="radio" id="mark" name="whatAction" value="mark" />
+        <label for="mark">Mark</label>
+      </div>
+      <div id="inputWarper">
+        <input type="text" placeholder="Company Name" id="companyInput" />
+        <button id="addCompanyBtn">add</button>
+      </div>
+      <div id="companyNameList"></div>
+      <hr />
+      <div>
+        <button id="downloadBtn">Download JSON</button>
+        <label class="myLabel">
+          <input type="file" id="uploadJSON" />
+          <span>Upload JSON</span>
+        </label>
+      </div>
+      <div id="errorMessage" class="margin-top-5"></div>
+    </div>
+  </body>
+</html>
