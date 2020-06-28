@@ -8,7 +8,7 @@ function updateListView() {
     const CompaniesNamesList = info.companyNameList;
     const whatAction = info.whatAction;
 
-    rollBackView();
+    rollBackViewAndAddClickEvent();
     //nothing to do..
     if (whatAction === "nothing") return;
 
@@ -26,18 +26,6 @@ function updateListView() {
           if (
             elementCompanyName.toLowerCase() === CompaniesName.toLowerCase()
           ) {
-            if (
-              document.getElementsByClassName(
-                "jobs-details-top-card__content-container"
-              ).length
-            ) {
-              //mark job preview: (for now i just mark it without hide content or show big message "company in the list"..)
-
-              document.getElementsByClassName(
-                "jobs-details-top-card__content-container"
-              )[0].style["background-color"] = "rgba(209, 200, 207, 0.62)";
-            }
-
             if (whatAction === "hide") {
               jobEl.classList.add("hidden");
             } else {
@@ -48,6 +36,27 @@ function updateListView() {
             }
           }
         }
+      }
+    }
+
+    //if it's preview mode view
+    if (
+      document.getElementsByClassName("jobs-details-top-card__company-url")
+        .length
+    ) {
+      //mark job preview: (for now i just mark it without hide content or show big message "company in the list"..)
+      const previewCompanyName = document
+        .getElementsByClassName("jobs-details-top-card__company-url")[0]
+        .innerText.trim();
+
+      if (CompaniesNamesList.includes(previewCompanyName)) {
+        document.getElementsByClassName(
+          "jobs-details-top-card__content-container"
+        )[0].style["background-color"] = "rgba(209, 200, 207, 0.62)";
+      } else {
+        document.getElementsByClassName(
+          "jobs-details-top-card__content-container"
+        )[0].style["background-color"] = "";
       }
     }
   });
@@ -64,7 +73,7 @@ function getListClassSelector() {
   return selector;
 }
 
-function rollBackView() {
+function rollBackViewAndAddClickEvent() {
   const linkedinJobList = document.querySelectorAll(
     `.${getListClassSelector()} li`
   );
@@ -72,15 +81,10 @@ function rollBackView() {
   for (let jobEl of linkedinJobList) {
     jobEl.style["background-color"] = "";
     jobEl.classList.remove("hidden");
-  }
 
-  if (
-    document.getElementsByClassName("jobs-details-top-card__content-container")
-      .length
-  ) {
-    document.getElementsByClassName(
-      "jobs-details-top-card__content-container"
-    )[0].style["background-color"] = "";
+    jobEl.addEventListener("click", (event) => {
+      updateListView();
+    });
   }
 }
 
